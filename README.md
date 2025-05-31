@@ -83,10 +83,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(formatter_ex STATIC formatter_ex.cpp)
 
-target_include_directories(formatter_ex PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR} 
-    ${CMAKE_CURRENT_SOURCE_DIR}/../formatter_lib
-)
+target_include_directories(formatter_ex PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(formatter_ex PUBLIC formatter)
 
@@ -161,28 +158,20 @@ project(solver_app)
 
 add_executable(solver equation.cpp)
 target_link_libraries(solver PRIVATE formatter_ex solver_lib)
-target_include_directories(solver PRIVATE 
-    ../formatter_ex_lib
-    ../formatter_lib
-    ../solver_lib
-)
-
 EOF
 
 $ cd ../hello_world_application
 
 $ cat > CMakeLists.txt << 'EOF'
 cmake_minimum_required(VERSION 3.5)
-project(solver_app)
+project(hello_world)
 
-add_executable(solver equation.cpp)
-target_link_libraries(solver PRIVATE formatter_ex solver_lib)
-target_include_directories(solver PRIVATE 
-    ../formatter_ex_lib
-    ../formatter_lib
-    ../solver_lib
-)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_executable(hello_world hello_world.cpp)
+
+target_link_libraries(hello_world PRIVATE formatter_ex)
 EOF
 
 $ cd ..
