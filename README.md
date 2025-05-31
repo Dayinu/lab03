@@ -229,6 +229,8 @@ $ cmake --build build
 [100%] Linking CXX executable hello_world
 [100%] Built target hello_world
 
+$ echo "*build/*" > .gitignore
+
 ```
 
 **Удачной стажировки!**
